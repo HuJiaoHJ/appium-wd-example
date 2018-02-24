@@ -6,7 +6,7 @@
   "scripts": {
     "sample": "mocha ./test/sample.js"
   },
-  "author": "",
+  "author": "hujiao",
   "license": "ISC",
   "dependencies": {
     "chai": "^4.1.2",
