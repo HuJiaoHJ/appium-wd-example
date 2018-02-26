@@ -27,7 +27,6 @@ describe("weapp test", function () {
             fastReset: false,
             noReset: true,
             chromeOptions: {
-                // androidProcess: 'com.tencent.mm:tools',
                 androidProcess: 'com.tencent.mm:appbrand0',
             }
         };
@@ -35,6 +34,11 @@ describe("weapp test", function () {
             .init(desired)
             .setImplicitWaitTimeout(8000);
     });
+
+    // after(function () {
+    //     return driver
+    //         .quit();
+    // });
 
     afterEach(function () {
         allPassed = allPassed && this.currentTest.state === 'passed';
@@ -51,10 +55,7 @@ describe("weapp test", function () {
                 return driver.performTouchAction(action);
             })
             .elementByXPath("//*[@text='小程序']")
-            .click();
-    });
-    it("enter 美团酒店+", function () {
-        return driver
+            .click()
             .elementByXPath("//*[contains(@text, '美团酒店+')]")
             .click()
             .elementByXPath("//*[contains(@text, '美团酒店')]")
@@ -62,37 +63,26 @@ describe("weapp test", function () {
     });
     it("test", function () {
         return driver
-            // .contexts()
-            // .then(function (ctxs) {
-            //     console.log(ctxs);
-            //     return driver.context(ctxs[ctxs.length - 1]);
-            // })
-            // .context("WEBVIEW_com.tencent.mm:tools")
+            .sleep(5000)
             .context('WEBVIEW_com.tencent.mm:appbrand0')
-            .sleep(10000)
-            .source()
-            .then(function (source) {
-                return driver.elementsByCssSelector('.cell', function (err, els) {
-                    els[0].click();
-                    // els[1].text(function (elText) { // 得到第一个元素的文本
-                    //     elText.should.eql('我的'); // 验证文本内容
-                    //     els[1].click();
-                    // });
-                });
-            })
-            // .elementsByCss('.cell', function (err, els) {
-            //     if (err) {
-            //         console.log(err);
+            .sleep(5000)
+            // .url()
+            // .then(function (u) {
+            //     console.log(u);
+            //     if (u !== 'https://servicewechat.com/preload/page-frame.html') {
+            //         return driver.get('https://servicewechat.com/preload/page-frame.html');
             //     }
-            //     console.log(els);
-            //     els[0].click();
             // })
-            // .elementById('name_input')
-            // .context("WEBVIEW_com.tencent.mm:tools")
-            // .sleep(5000)
-            // .elementByXPath("//*[contains(@text, '美食')]")
-            // .click()
-            // .elementByXPath("//*[contains(., '金百万')]")
-            // .click();
+            // .source()
+            // .then(function (source) {
+            //     console.log(source);
+            // })
+            .elementsByCssSelector('.cell', function (err, els) {
+                els[0].click();
+                // els[1].text(function (elText) { // 得到第一个元素的文本
+                //     elText.should.eql('我的'); // 验证文本内容
+                //     els[1].click();
+                // });
+            })
     });
 });
