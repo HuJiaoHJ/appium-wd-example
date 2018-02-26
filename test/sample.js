@@ -18,7 +18,7 @@ describe("sample test", function () {
         driver = wd.promiseChainRemote(serverConfig);
         require("../helpers/logging").configure(driver);
 
-        var desired = {
+        let desired = {
             platformName: 'Android',
             deviceName: 'U2TDU15904014013',
             appPackage: 'com.tencent.mm',
@@ -44,6 +44,7 @@ describe("sample test", function () {
     it("进入微信首页", function () {
         return driver
             .elementByXPath("//*[@text='登录']")
-            .should.eventually.exist;
+            .should.eventually.exist
+            .click();
     });
 });

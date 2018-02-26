@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sample": "mocha ./test/sample.js"
+    "sample": "mocha ./test/sample.js",
+    "weapp": "mocha ./test/weapp.js"
   },
   "author": "hujiao",
   "license": "ISC",
