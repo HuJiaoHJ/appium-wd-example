@@ -7,9 +7,9 @@ const serverConfig = {
     port: 4723
 };
 
-describe("weapp test", function () {
+describe("sample test", function () {
     this.timeout(300000);
-    
+
     let driver;
     let allPassed = true;
 
@@ -35,10 +35,10 @@ describe("weapp test", function () {
             .setImplicitWaitTimeout(8000);
     });
 
-    // after(function () {
-    //     return driver
-    //         .quit();
-    // });
+    after(function () {
+        return driver
+            .quit();
+    });
 
     afterEach(function () {
         allPassed = allPassed && this.currentTest.state === 'passed';
@@ -59,30 +59,32 @@ describe("weapp test", function () {
             .elementByXPath("//*[contains(@text, '美团酒店+')]")
             .click()
             .elementByXPath("//*[contains(@text, '美团酒店')]")
-            .should.eventually.exist;
-    });
-    it("test", function () {
-        return driver
-            .sleep(5000)
+            .should.eventually.exist
+            .contexts()
+            .then(function (ctxs) {
+                console.log(ctxs);
+            })
             .context('WEBVIEW_com.tencent.mm:appbrand0')
             .sleep(5000)
+            .url()
+            .then(function (u) {
+                console.log(u);
+                // if (u !== 'https://servicewechat.com/preload/page-frame.html') {
+                //     return driver.get('https://servicewechat.com/preload/page-frame.html');
+                // }
+            })
+            .elementsByCssSelector('.cell', function (err, els) {
+                els[0].click();
+            })
+            // .contexts()
+            // .then(function (ctxs) {
+            //     console.log(ctxs);
+            // })
+            // .context('WEBVIEW_com.tencent.mm:appbrand1')
             // .url()
             // .then(function (u) {
             //     console.log(u);
-            //     if (u !== 'https://servicewechat.com/preload/page-frame.html') {
-            //         return driver.get('https://servicewechat.com/preload/page-frame.html');
-            //     }
             // })
-            // .source()
-            // .then(function (source) {
-            //     console.log(source);
-            // })
-            .elementsByCssSelector('.cell', function (err, els) {
-                els[0].click();
-                // els[1].text(function (elText) { // 得到第一个元素的文本
-                //     elText.should.eql('我的'); // 验证文本内容
-                //     els[1].click();
-                // });
-            })
+            .sleep(5000);
     });
 });
