@@ -60,10 +60,6 @@ describe("sample test", function () {
             .click()
             .elementByXPath("//*[contains(@text, '美团酒店')]")
             .should.eventually.exist
-            .contexts()
-            .then(function (ctxs) {
-                console.log(ctxs);
-            })
             .context('WEBVIEW_com.tencent.mm:appbrand0')
             .sleep(5000)
             .url()
@@ -74,16 +70,11 @@ describe("sample test", function () {
                 // }
             })
             .elementsByCssSelector('.cell', function (err, els) {
-                els[0].click();
+                // els[0].click();
             })
             // .contexts()
             // .then(function (ctxs) {
             //     console.log(ctxs);
-            // })
-            // .context('WEBVIEW_com.tencent.mm:appbrand1')
-            // .url()
-            // .then(function (u) {
-            //     console.log(u);
             // })
             .sleep(5000);
     });
