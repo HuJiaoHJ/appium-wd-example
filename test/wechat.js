@@ -7,7 +7,7 @@ const serverConfig = {
     port: 4723
 };
 
-describe("sample test", function () {
+describe("weapp test", function () {
     this.timeout(300000);
 
     let driver;
@@ -26,9 +26,9 @@ describe("sample test", function () {
             fullReset: false,
             fastReset: false,
             noReset: true,
-            // chromeOptions: {
-            //     androidProcess: 'com.tencent.mm:appbrand0',
-            // }
+            chromeOptions: {
+                androidProcess: 'com.tencent.mm:appbrand0',
+            }
         };
         return driver
             .init(desired)
@@ -57,25 +57,20 @@ describe("sample test", function () {
             .elementByXPath("//*[@text='小程序']")
             .click()
             .elementByXPath("//*[contains(@text, '美团酒店+')]")
-            // .click()
-            // .elementByXPath("//*[contains(@text, '美团酒店')]")
+            .click()
+            .elementByXPath("//*[contains(@text, '美团酒店')]")
             .should.eventually.exist
-            // .context('WEBVIEW_com.tencent.mm:appbrand0')
-            // .sleep(5000)
-            // .url()
-            // .then(function (u) {
-            //     console.log(u);
-            //     // if (u !== 'https://servicewechat.com/preload/page-frame.html') {
-            //     //     return driver.get('https://servicewechat.com/preload/page-frame.html');
-            //     // }
-            // })
-            // .elementsByCssSelector('.cell', function (err, els) {
-            //     // els[0].click();
-            // })
-            // // .contexts()
-            // // .then(function (ctxs) {
-            // //     console.log(ctxs);
-            // // })
-            // .sleep(5000);
+            .context('WEBVIEW_com.tencent.mm:appbrand0')
+            .sleep(5000)
+            .url()
+            .elementsByCssSelector('.cell', function (err, els) {
+                els[0].click();
+            })
+            .sleep(5000)
+            .url()
+            .elementsByCssSelector('.room-button', function (err, els) {
+                els[0].click();
+            })
+            .sleep(5000);
     });
 });
